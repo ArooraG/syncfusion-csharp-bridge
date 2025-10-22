@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Dockerfile (CLEAN VERSION)
 
 # 1. Build Stage: .NET SDK image use karo
@@ -25,7 +25,6 @@ WORKDIR /app
 COPY --from=build /app/publish .
 
 # App ko chalao (yeh aapka Start Command hai)
-=======
 # Dockerfile (CLEAN VERSION)
 
 # 1. Build Stage: .NET SDK image use karo
@@ -52,5 +51,5 @@ WORKDIR /app
 COPY --from=build /app/publish .
 
 # App ko chalao (yeh aapka Start Command hai)
->>>>>>> 8e0d5715570f8015c845de0a3747ae15be436084
+ 8e0d5715570f8015c845de0a3747ae15be436084
 ENTRYPOINT ["dotnet", "SyncfusionBridgeAPI.dll"]
