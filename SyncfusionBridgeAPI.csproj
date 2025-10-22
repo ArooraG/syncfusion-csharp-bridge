@@ -1,16 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <!-- Yahan net9.0 ko net8.0 karein -->
+    <TargetFramework>net8.0</TargetFramework> 
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.10" />
-    <PackageReference Include="Syncfusion.DocIO.NET" Version="31.2.3" />
-    <PackageReference Include="Syncfusion.Pdf.NET" Version="31.2.3" />
-    <PackageReference Include="Syncfusion.XlsIO.NET" Version="31.2.3" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    
+    <!-- Syncfusion packages confirm karein ki yahan hain -->
+    <PackageReference Include="Syncfusion.Pdf.NET" Version="31.2.3" /> 
+    <PackageReference Include="Syncfusion.DocIO.NET" Version="31.2.3" /> 
+    <PackageReference Include="Syncfusion.XlsIO.NET" Version="31.2.3" /> 
   </ItemGroup>
 
 </Project>
