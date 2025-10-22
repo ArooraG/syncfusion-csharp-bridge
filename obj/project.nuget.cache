@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "dgSpecHash": "EGCRFPWSyYY=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Gc\\SyncfusionBridgeAPI\\SyncfusionBridgeAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Gc\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.10\\microsoft.aspnetcore.openapi.9.0.10.nupkg.sha512",
+    "C:\\Users\\Gc\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512",
+    "C:\\Users\\Gc\\.nuget\\packages\\syncfusion.compression.net\\31.2.3\\syncfusion.compression.net.31.2.3.nupkg.sha512",
+    "C:\\Users\\Gc\\.nuget\\packages\\syncfusion.docio.net\\31.2.3\\syncfusion.docio.net.31.2.3.nupkg.sha512",
+    "C:\\Users\\Gc\\.nuget\\packages\\syncfusion.licensing\\31.2.3\\syncfusion.licensing.31.2.3.nupkg.sha512",
+    "C:\\Users\\Gc\\.nuget\\packages\\syncfusion.markdown\\31.2.3\\syncfusion.markdown.31.2.3.nupkg.sha512",
+    "C:\\Users\\Gc\\.nuget\\packages\\syncfusion.officechart.net\\31.2.3\\syncfusion.officechart.net.31.2.3.nupkg.sha512",
+    "C:\\Users\\Gc\\.nuget\\packages\\syncfusion.pdf.net\\31.2.3\\syncfusion.pdf.net.31.2.3.nupkg.sha512",
+    "C:\\Users\\Gc\\.nuget\\packages\\syncfusion.xlsio.net\\31.2.3\\syncfusion.xlsio.net.31.2.3.nupkg.sha512",
+    "C:\\Users\\Gc\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\Gc\\.nuget\\packages\\system.text.encoding.codepages\\6.0.0\\system.text.encoding.codepages.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
