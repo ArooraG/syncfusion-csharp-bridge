@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <!-- Stable version .NET 8.0 par set kiya gaya -->
     <TargetFramework>net8.0</TargetFramework> 
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -11,14 +10,12 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     
-    <!-- Zaroori Syncfusion Packages -->
+    <!-- FIX: Sirf woh packages jo nuget.org par hain -->
     <PackageReference Include="Syncfusion.Pdf.NET" Version="31.2.3" /> 
     <PackageReference Include="Syncfusion.DocIO.NET" Version="31.2.3" /> 
     <PackageReference Include="Syncfusion.XlsIO.NET" Version="31.2.3" /> 
     
-    <!-- FIX: PDF to Word/Excel ke liye naye packages -->
-    <PackageReference Include="Syncfusion.PdfToWordConverter.NET" Version="31.2.3" />
-    <PackageReference Include="Syncfusion.PdfToExcelConverter.NET" Version="31.2.3" />
+    <!-- Missing packages yahan se hata diye gaye hain -->
   </ItemGroup>
 
 </Project>

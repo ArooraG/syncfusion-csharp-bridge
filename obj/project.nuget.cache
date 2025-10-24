@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "H9OjHbCrFRk=",
-  "success": false,
+  "dgSpecHash": "OoGg5j/kqdc=",
+  "success": true,
   "projectFilePath": "C:\\Users\\Gc\\SyncfusionBridgeAPI\\SyncfusionBridgeAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Gc\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.0\\microsoft.aspnetcore.openapi.8.0.0.nupkg.sha512",
@@ -25,28 +25,5 @@
     "C:\\Users\\Gc\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.21\\microsoft.aspnetcore.app.ref.8.0.21.nupkg.sha512",
     "C:\\Users\\Gc\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.21\\microsoft.netcore.app.host.win-x64.8.0.21.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package Syncfusion.PdfToWordConverter.NET. No packages exist with this id in source(s): nuget.org",
-      "projectPath": "C:\\Users\\Gc\\SyncfusionBridgeAPI\\SyncfusionBridgeAPI.csproj",
-      "filePath": "C:\\Users\\Gc\\SyncfusionBridgeAPI\\SyncfusionBridgeAPI.csproj",
-      "libraryId": "Syncfusion.PdfToWordConverter.NET",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    },
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package Syncfusion.PdfToExcelConverter.NET. No packages exist with this id in source(s): nuget.org",
-      "projectPath": "C:\\Users\\Gc\\SyncfusionBridgeAPI\\SyncfusionBridgeAPI.csproj",
-      "filePath": "C:\\Users\\Gc\\SyncfusionBridgeAPI\\SyncfusionBridgeAPI.csproj",
-      "libraryId": "Syncfusion.PdfToExcelConverter.NET",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  "logs": []
 }

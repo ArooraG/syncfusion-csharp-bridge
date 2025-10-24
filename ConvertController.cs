@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Syncfusion.Pdf;
-// FIX: Sahi using statements
-using Syncfusion.PdfToWordConverter; 
-using Syncfusion.PdfToExcelConverter; 
 using Syncfusion.DocIO.DLS;
 using Syncfusion.XlsIO;
 using System.IO;
+
+// Sirf zaroori classes ka istemal
 
 namespace SyncfusionBridgeAPI.Controllers
 {
@@ -35,25 +34,22 @@ namespace SyncfusionBridgeAPI.Controllers
 
                     using (MemoryStream outputStream = new MemoryStream())
                     {
-                        if (target_format.ToLower() == "docx")
+                        using (PdfDocument pdfDoc = new PdfDocument(inputStream))
                         {
-                            // --- PDF to Word Logic (FIXED) ---
-                            using (PdfToWordConverter converter = new PdfToWordConverter(inputStream))
+                            if (target_format.ToLower() == "docx")
                             {
-                                converter.Convert(outputStream, FormatType.Docx); 
+                                // --- PDF to Word Logic (Using Direct Export) ---
+                                // Yeh method original packages mein hai
+                                pdfDoc.Export(outputStream, FormatType.Docx); 
+                                // -------------------------
                             }
-                            // -------------------------
-                        }
-                        else if (target_format.ToLower() == "xlsx")
-                        {
-                            // --- PDF to Excel Logic (FIXED) ---
-                            using (PdfToExcelConverter converter = new PdfToExcelConverter(inputStream))
+                            else if (target_format.ToLower() == "xlsx")
                             {
-                                // Table detection ko enable karna
-                                converter.Settings.AutoDetectTables = true; 
-                                converter.Convert(outputStream);
+                                // --- PDF to Excel Logic (Using Direct Export) ---
+                                // Yeh method original packages mein hai
+                                pdfDoc.Export(outputStream, ExcelVersion.Excel2016, true);
+                                // --------------------------
                             }
-                            // --------------------------
                         }
 
                         outputStream.Position = 0;

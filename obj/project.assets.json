@@ -818,8 +818,6 @@
       "Swashbuckle.AspNetCore >= 6.4.0",
       "Syncfusion.DocIO.NET >= 31.2.3",
       "Syncfusion.Pdf.NET >= 31.2.3",
-      "Syncfusion.PdfToExcelConverter.NET >= 31.2.3",
-      "Syncfusion.PdfToWordConverter.NET >= 31.2.3",
       "Syncfusion.XlsIO.NET >= 31.2.3"
     ]
   },
@@ -882,14 +880,6 @@
             "target": "Package",
             "version": "[31.2.3, )"
           },
-          "Syncfusion.PdfToExcelConverter.NET": {
-            "target": "Package",
-            "version": "[31.2.3, )"
-          },
-          "Syncfusion.PdfToWordConverter.NET": {
-            "target": "Package",
-            "version": "[31.2.3, )"
-          },
           "Syncfusion.XlsIO.NET": {
             "target": "Package",
             "version": "[31.2.3, )"
@@ -935,25 +925,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package Syncfusion.PdfToWordConverter.NET. No packages exist with this id in source(s): nuget.org",
-      "libraryId": "Syncfusion.PdfToWordConverter.NET",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    },
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package Syncfusion.PdfToExcelConverter.NET. No packages exist with this id in source(s): nuget.org",
-      "libraryId": "Syncfusion.PdfToExcelConverter.NET",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  }
 }
