@@ -60,6 +60,14 @@
               "target": "Package",
               "version": "[31.2.3, )"
             },
+            "Syncfusion.PdfToExcelConverter.NET": {
+              "target": "Package",
+              "version": "[31.2.3, )"
+            },
+            "Syncfusion.PdfToWordConverter.NET": {
+              "target": "Package",
+              "version": "[31.2.3, )"
+            },
             "Syncfusion.XlsIO.NET": {
               "target": "Package",
               "version": "[31.2.3, )"

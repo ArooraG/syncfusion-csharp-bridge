@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Syncfusion.Pdf;
-// Zaroori naye namespaces
-using Syncfusion.Pdf.Parsing; 
-using Syncfusion.Pdf.ToWordConverter;
-using Syncfusion.Pdf.ToExcelConverter;
+// FIX: Sahi using statements
+using Syncfusion.PdfToWordConverter; 
+using Syncfusion.PdfToExcelConverter; 
 using Syncfusion.DocIO.DLS;
 using Syncfusion.XlsIO;
 using System.IO;
