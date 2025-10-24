@@ -17,8 +17,8 @@
     
     <!-- FIX: Missing Converter Packages (Render inko dhoondh nahi pa raha tha) -->
     <!-- Hum inko use kar rahe hain, agar Render phir se fail ho toh yeh hi aakhri problem hogi -->
-    <PackageReference Include="Syncfusion.PdfToWordConverter.NET" Version="31.2.3" />
-    <PackageReference Include="Syncfusion.PdfToExcelConverter.NET" Version="31.2.3" />
+    <PackageReference Include="Syncfusion.PdfToWordConverter.Net.Core" Version="31.2.3" /> <!-- Naya package naam -->
+    <PackageReference Include="Syncfusion.PdfToExcelConverter.Net.Core" Version="31.2.3" /> <!-- Naya package naam -->
   </ItemGroup>
 
 </Project>
