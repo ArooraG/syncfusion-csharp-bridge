@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Syncfusion.Pdf;
-using Syncfusion.DocIO.DLS;
+using Syncfusion.Pdf.Parsing; // FIX: PdfLoadedDocument ke liye zaroori
+using Syncfusion.DocIO;       // FIX: FormatType ke liye zaroori
 using Syncfusion.XlsIO;
 using System.IO;
-
-// Sirf zaroori classes ka istemal
 
 namespace SyncfusionBridgeAPI.Controllers
 {
@@ -20,6 +19,7 @@ namespace SyncfusionBridgeAPI.Controllers
                 return BadRequest(new { error = "No file received." });
             }
 
+            // Target format (docx ya xlsx) check karna
             if (string.IsNullOrEmpty(target_format) || (target_format.ToLower() != "docx" && target_format.ToLower() != "xlsx"))
             {
                 return BadRequest(new { error = "Invalid or missing target_format (must be docx or xlsx)." });
@@ -34,21 +34,18 @@ namespace SyncfusionBridgeAPI.Controllers
 
                     using (MemoryStream outputStream = new MemoryStream())
                     {
-                        using (PdfDocument pdfDoc = new PdfDocument(inputStream))
+                        // FIX: PdfLoadedDocument ka istemal
+                        using (PdfLoadedDocument loadedDocument = new PdfLoadedDocument(inputStream))
                         {
                             if (target_format.ToLower() == "docx")
                             {
-                                // --- PDF to Word Logic (Using Direct Export) ---
-                                // Yeh method original packages mein hai
-                                pdfDoc.Export(outputStream, FormatType.Docx); 
-                                // -------------------------
+                                // FIX: PdfLoadedDocument ka Export method aur FormatType.Docx
+                                loadedDocument.Export(outputStream, FormatType.Docx); 
                             }
                             else if (target_format.ToLower() == "xlsx")
                             {
-                                // --- PDF to Excel Logic (Using Direct Export) ---
-                                // Yeh method original packages mein hai
-                                pdfDoc.Export(outputStream, ExcelVersion.Excel2016, true);
-                                // --------------------------
+                                // FIX: PdfLoadedDocument ka Export method
+                                loadedDocument.Export(outputStream, ExcelVersion.Excel2016, true);
                             }
                         }
 
