@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Syncfusion.Pdf;
-using Syncfusion.Pdf.Parsing; // FIX: PdfLoadedDocument ke liye zaroori
-using Syncfusion.DocIO;       // FIX: FormatType ke liye zaroori
+using Syncfusion.Pdf.Parsing; 
+// FIX: Ab hum in naye classes ko dobara use karenge, kyuki direct Export kaam nahi kar raha
+using Syncfusion.PdfToWordConverter; 
+using Syncfusion.PdfToExcelConverter; 
+using Syncfusion.DocIO;       
 using Syncfusion.XlsIO;
 using System.IO;
 
@@ -19,7 +22,6 @@ namespace SyncfusionBridgeAPI.Controllers
                 return BadRequest(new { error = "No file received." });
             }
 
-            // Target format (docx ya xlsx) check karna
             if (string.IsNullOrEmpty(target_format) || (target_format.ToLower() != "docx" && target_format.ToLower() != "xlsx"))
             {
                 return BadRequest(new { error = "Invalid or missing target_format (must be docx or xlsx)." });
@@ -34,19 +36,25 @@ namespace SyncfusionBridgeAPI.Controllers
 
                     using (MemoryStream outputStream = new MemoryStream())
                     {
-                        // FIX: PdfLoadedDocument ka istemal
-                        using (PdfLoadedDocument loadedDocument = new PdfLoadedDocument(inputStream))
+                        // FIX: Ab hum converter classes ko seedhe input stream se banayenge
+                        if (target_format.ToLower() == "docx")
                         {
-                            if (target_format.ToLower() == "docx")
+                            // --- PDF to Word Logic (FIXED) ---
+                            using (PdfToWordConverter converter = new PdfToWordConverter(inputStream))
                             {
-                                // FIX: PdfLoadedDocument ka Export method aur FormatType.Docx
-                                loadedDocument.Export(outputStream, FormatType.Docx); 
+                                converter.Convert(outputStream, FormatType.Docx); 
                             }
-                            else if (target_format.ToLower() == "xlsx")
+                            // -------------------------
+                        }
+                        else if (target_format.ToLower() == "xlsx")
+                        {
+                            // --- PDF to Excel Logic (FIXED) ---
+                            using (PdfToExcelConverter converter = new PdfToExcelConverter(inputStream))
                             {
-                                // FIX: PdfLoadedDocument ka Export method
-                                loadedDocument.Export(outputStream, ExcelVersion.Excel2016, true);
+                                converter.Settings.AutoDetectTables = true; 
+                                converter.Convert(outputStream);
                             }
+                            // --------------------------
                         }
 
                         outputStream.Position = 0;

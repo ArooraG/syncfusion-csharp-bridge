@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SyncfusionBridgeAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a0ce33c05e84c701410ffb917ac04415d1bc72bb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a1c97fd036271bb06bb1415ac6738b156e1562c6")]
 [assembly: System.Reflection.AssemblyProductAttribute("SyncfusionBridgeAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SyncfusionBridgeAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
