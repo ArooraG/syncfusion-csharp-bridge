@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework> 
-    <!-- Agar aap .NET 7 ya 8 istemal kar rahe hain to isay net7.0 ya net8.0 kar dein -->
+    <!-- .NET version ko update kar diya hai taake warning na aaye -->
+    <TargetFramework>net8.0</TargetFramework> 
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
@@ -10,12 +10,12 @@
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 
-    <!-- Ghalat Packages Yahan Se Hata Diye Gaye Hain -->
-
-    <!-- Yeh Sahi Syncfusion Packages Hain -->
+    <!-- Mukammal Sahi Syncfusion Packages -->
     <PackageReference Include="Syncfusion.Pdf.Net.Core" Version="26.1.35" />
     <PackageReference Include="Syncfusion.DocIO.Net.Core" Version="26.1.35" />
     <PackageReference Include="Syncfusion.XlsIO.Net.Core" Version="26.1.35" />
+    
+    <!-- YEH PACKAGE MISSING THA -->
     <PackageReference Include="Syncfusion.Pdf.Imaging.Net.Core" Version="26.1.35" />
     
   </ItemGroup>
