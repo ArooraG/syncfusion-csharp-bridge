@@ -44,25 +44,25 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.AspNetCore.OpenApi": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.4.0, )"
+              "version": "[6.5.0, )"
             },
-            "Syncfusion.DocIO.NET": {
+            "Syncfusion.DocIO.Net.Core": {
               "target": "Package",
-              "version": "[31.2.3, )"
+              "version": "[26.1.35, )"
             },
-            "Syncfusion.Pdf.NET": {
+            "Syncfusion.Pdf.Imaging.Net.Core": {
               "target": "Package",
-              "version": "[31.2.3, )"
+              "version": "[26.1.35, )"
             },
-            "Syncfusion.XlsIO.NET": {
+            "Syncfusion.Pdf.Net.Core": {
               "target": "Package",
-              "version": "[31.2.3, )"
+              "version": "[26.1.35, )"
+            },
+            "Syncfusion.XlsIO.Net.Core": {
+              "target": "Package",
+              "version": "[26.1.35, )"
             }
           },
           "imports": [

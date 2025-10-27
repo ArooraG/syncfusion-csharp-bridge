@@ -7,18 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+
+    <!-- Mukammal Sahi Syncfusion Packages -->
+    <PackageReference Include="Syncfusion.Pdf.Net.Core" Version="26.1.35" />
+    <PackageReference Include="Syncfusion.DocIO.Net.Core" Version="26.1.35" />
+    <PackageReference Include="Syncfusion.XlsIO.Net.Core" Version="26.1.35" />
+    <PackageReference Include="Syncfusion.Pdf.Imaging.Net.Core" Version="26.1.35" />
     
-    <!-- Original Packages -->
-    <PackageReference Include="Syncfusion.Pdf.NET" Version="31.2.3" /> 
-    <PackageReference Include="Syncfusion.DocIO.NET" Version="31.2.3" /> 
-    <PackageReference Include="Syncfusion.XlsIO.NET" Version="31.2.3" /> 
-    
-    <!-- FIX: Missing Converter Packages (Render inko dhoondh nahi pa raha tha) -->
-    <!-- Hum inko use kar rahe hain, agar Render phir se fail ho toh yeh hi aakhri problem hogi -->
-    <PackageReference Include="Syncfusion.PdfToWordConverter.NET" Version="31.2.3" />
-    <PackageReference Include="Syncfusion.PdfToExcelConverter.NET" Version="31.2.3" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 using Syncfusion.Licensing;
 
 // 1. License Key Environment Variable se lena
-var licenseKey = Environment.GetEnvironmentVariable("SYNCFUSION_LICENSE_KEY");
+var licenseKey = Environment.GetEnvironmentVariable("Ngo9BigBOggjHTQxAR8/V1JFaF1cX2hIf0x1WmFZfVtgdVRMY11bRHFPMyBoS35Rc0RjW3hfcXdURmdYVE1xVEFc");
 if (!string.IsNullOrEmpty(licenseKey))
 {
     SyncfusionLicenseProvider.RegisterLicense(licenseKey);

@@ -1,74 +1,99 @@
 using Microsoft.AspNetCore.Mvc;
-using Syncfusion.Pdf;
-using Syncfusion.Pdf.Parsing; 
-// FIX: Ab hum in naye classes ko dobara use karenge, kyuki direct Export kaam nahi kar raha
-using Syncfusion.PdfToWordConverter; 
-using Syncfusion.PdfToExcelConverter; 
-using Syncfusion.DocIO;       
+using Syncfusion.DocIO;
+using Syncfusion.DocIO.DLS;
+using Syncfusion.Pdf.Imaging;
+using Syncfusion.Pdf.Parsing;
 using Syncfusion.XlsIO;
 using System.IO;
 
 namespace SyncfusionBridgeAPI.Controllers
 {
-    [Route("api/[controller]")] 
     [ApiController]
-    public class ConvertController : ControllerBase
+    [Route("[controller]")]
+    public class ConvertController : ControllerBase // Class ka naam aapki file ke naam se match hona chahiye
     {
-        [HttpPost]
-        public IActionResult Post([FromForm] IFormFile file, [FromForm] string target_format)
+        [HttpPost("ConvertToWordAdvanced")]
+        public IActionResult ConvertToWordAdvanced(IFormFile file)
         {
             if (file == null || file.Length == 0)
             {
-                return BadRequest(new { error = "No file received." });
+                return BadRequest("File upload nahi hui.");
             }
 
-            if (string.IsNullOrEmpty(target_format) || (target_format.ToLower() != "docx" && target_format.ToLower() != "xlsx"))
+            // PDF document load karein
+            PdfLoadedDocument loadedDocument = new PdfLoadedDocument(file.OpenReadStream());
+            
+            // Naya Word document banayein
+            WordDocument document = new WordDocument();
+
+            // Har page ko image bana kar Word document mein shamil karein
+            for (int i = 0; i < loadedDocument.Pages.Count; i++)
             {
-                return BadRequest(new { error = "Invalid or missing target_format (must be docx or xlsx)." });
+                IWSection section = document.AddSection();
+                Stream imageStream = loadedDocument.Pages[i].ConvertToImage(PdfImageType.Bitmap);
+                IWPicture picture = section.AddParagraph().AppendPicture(imageStream);
+
+                section.PageSetup.PageSize = new Syncfusion.Drawing.SizeF(loadedDocument.Pages[i].Size.Width, loadedDocument.Pages[i].Size.Height);
+                section.PageSetup.Margins.All = 0;
+                picture.Width = section.PageSetup.ClientWidth;
+                picture.Height = section.PageSetup.ClientHeight;
             }
 
-            try
+            loadedDocument.Close(true);
+
+            MemoryStream stream = new MemoryStream();
+            document.Save(stream, FormatType.Docx);
+            document.Close();
+            stream.Position = 0;
+
+            return File(stream, "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "AdvancedConvertedDocument.docx");
+        }
+
+        [HttpPost("ConvertToExcelAdvanced")]
+        public IActionResult ConvertToExcelAdvanced(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
             {
-                using (MemoryStream inputStream = new MemoryStream())
+                return BadRequest("File upload nahi hui.");
+            }
+
+            PdfLoadedDocument loadedDocument = new PdfLoadedDocument(file.OpenReadStream());
+            PdfTableExtractor extractor = new PdfTableExtractor(loadedDocument);
+            PdfTable[] pdfTables = extractor.ExtractTable();
+
+            using (ExcelEngine excelEngine = new ExcelEngine())
+            {
+                IApplication application = excelEngine.Excel;
+                application.DefaultVersion = ExcelVersion.Xlsx;
+                IWorkbook workbook = application.Workbooks.Create(pdfTables.Length > 0 ? pdfTables.Length : 1);
+                
+                if (pdfTables.Length > 0)
                 {
-                    file.CopyTo(inputStream);
-                    inputStream.Position = 0; 
-
-                    using (MemoryStream outputStream = new MemoryStream())
+                    for (int i = 0; i < pdfTables.Length; i++)
                     {
-                        // FIX: Ab hum converter classes ko seedhe input stream se banayenge
-                        if (target_format.ToLower() == "docx")
+                        IWorksheet worksheet = workbook.Worksheets[i];
+                        worksheet.Name = $"Table {i + 1}";
+                        for (int row = 0; row < pdfTables[i].RowCount; row++)
                         {
-                            // --- PDF to Word Logic (FIXED) ---
-                            using (PdfToWordConverter converter = new PdfToWordConverter(inputStream))
+                            for (int col = 0; col < pdfTables[i].ColumnCount; col++)
                             {
-                                converter.Convert(outputStream, FormatType.Docx); 
+                                worksheet.Range[row + 1, col + 1].Text = pdfTables[i][row, col].GetText();
                             }
-                            // -------------------------
                         }
-                        else if (target_format.ToLower() == "xlsx")
-                        {
-                            // --- PDF to Excel Logic (FIXED) ---
-                            using (PdfToExcelConverter converter = new PdfToExcelConverter(inputStream))
-                            {
-                                converter.Settings.AutoDetectTables = true; 
-                                converter.Convert(outputStream);
-                            }
-                            // --------------------------
-                        }
-
-                        outputStream.Position = 0;
-                        string contentType = target_format.ToLower() == "docx" 
-                                           ? "application/vnd.openxmlformats-officedocument.wordprocessingml.document" 
-                                           : "application/vnd.openxmlformats-officedocument.spreadsheetml.document";
-                        
-                        return File(outputStream.ToArray(), contentType, $"output.{target_format}");
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { error = $"Conversion failed: {ex.Message}" });
+                else
+                {
+                    IWorksheet worksheet = workbook.Worksheets[0];
+                    worksheet.Range["A1"].Text = "Is PDF document mein koi table nahi mila.";
+                }
+
+                MemoryStream stream = new MemoryStream();
+                workbook.SaveAs(stream);
+                stream.Position = 0;
+                loadedDocument.Close(true);
+
+                return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "AdvancedConvertedDocument.xlsx");
             }
         }
     }
