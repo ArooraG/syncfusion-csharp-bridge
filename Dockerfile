@@ -1,27 +1,29 @@
-# Dockerfile
-
-# 1. Build Stage: Stable .NET 8.0 SDK use karein
+# 1. Build Stage: yahan app ko build/publish karte hain
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+
 WORKDIR /src
 
-# Project file copy karein
+# Pehle sirf project file copy karein
 COPY ["SyncfusionBridgeAPI.csproj", "."]
 
-# Zaroori packages restore karein
+# ZAROORI LINE: GUMSHUDA PACKAGE KO ZABARDASTI INSTALL KAREIN
+RUN dotnet add package Syncfusion.Pdf.Imaging.Net.Core --version 26.1.35
+
+# Ab baaqi packages restore karein
 RUN dotnet restore "SyncfusionBridgeAPI.csproj"
 
 # Baaki sab files copy karein
 COPY . .
 
-# Project ko taiyar karein (Build/Publish)
+# Project ko publish karein
 RUN dotnet publish "SyncfusionBridgeAPI.csproj" -c Release -o /app/publish
+
 
 # 2. Final Stage: sirf app ko chalaane ki zaroorat hai
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
-WORKDIR /app
 
-# Published files copy karein
+WORKDIR /app
 COPY --from=build /app/publish .
 
-# App ko chalao (yeh aapka Start Command hai)
+# App ko chalaayein
 ENTRYPOINT ["dotnet", "SyncfusionBridgeAPI.dll"]
