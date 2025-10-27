@@ -1,29 +1,26 @@
-# 1. Build Stage: yahan app ko build/publish karte hain
+# Stage 1: Build the application
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-
 WORKDIR /src
 
-# Pehle sirf project file copy karein
+# Copy only the project file to leverage Docker layer caching
 COPY ["SyncfusionBridgeAPI.csproj", "."]
 
-# ZAROORI LINE: GUMSHUDA PACKAGE KO ZABARDASTI INSTALL KAREIN
+# --- THE GUARANTEED FIX ---
+# Manually add the missing package to the .csproj file inside the container
 RUN dotnet add package Syncfusion.Pdf.Imaging.Net.Core --version 26.1.35
 
-# Ab baaqi packages restore karein
+# Restore all other dependencies
 RUN dotnet restore "SyncfusionBridgeAPI.csproj"
 
-# Baaki sab files copy karein
+# Copy the rest of the application files
 COPY . .
 
-# Project ko publish karein
+# Publish the application
+WORKDIR "/src/."
 RUN dotnet publish "SyncfusionBridgeAPI.csproj" -c Release -o /app/publish
 
-
-# 2. Final Stage: sirf app ko chalaane ki zaroorat hai
+# Stage 2: Create the final runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
-
 WORKDIR /app
 COPY --from=build /app/publish .
-
-# App ko chalaayein
 ENTRYPOINT ["dotnet", "SyncfusionBridgeAPI.dll"]
